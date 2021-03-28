@@ -29595,7 +29595,7 @@ var _Navbar = require("./components/Navbar");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var App = function App() {
-  return /*#__PURE__*/_react.default.createElement("div", null, "Hello", /*#__PURE__*/_react.default.createElement(_Navbar.Navbar, null));
+  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Navbar.Navbar, null), "Hello");
 };
 
 _reactDom.default.render( /*#__PURE__*/_react.default.createElement(App, null), document.getElementById("root"));
