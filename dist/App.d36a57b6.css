@@ -1,0 +1,38 @@
+:root {
+  --main-bg-color: rgb(0, 0, 0, 0.9);
+  --white: white;
+}
+
+.toggler {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  color: var(--white);
+}
+
+.navbar {
+  width: 100%;
+  background-color: var(--navy);
+}
+
+.nav {
+  position: fixed;
+  color: var(--white);
+  z-index: 2;
+  background-color: var(--navy);
+  width: 25%;
+  height: 100%;
+  border: 1px solid black;
+  transition: 0.5s ease all;
+}
+
+.nav__item {
+  text-align: center;
+  width: 90%;
+  margin: 0 5% 0 5%;
+  border: 1px solid black;
+  color: var(--light-slate);
+}
+
+
+/*# sourceMappingURL=/App.d36a57b6.css.map */
