@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import { Navbar } from "./components/Navigation/Navbar";
+import { Trending } from "./components/trending/trending";
 
 const App = () => {
   return (
     <div>
       <Navbar />
       <div className="main-content">
-        <h1>Trending Games</h1>
-        <h1>All Time Greats</h1>
+        <Trending />
+        <h1>Special Offers</h1>
       </div>
     </div>
   );

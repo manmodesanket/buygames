@@ -11,6 +11,7 @@
   "author": "Sanket Manmode",
   "license": "ISC",
   "devDependencies": {
+    "miragejs": "^0.1.41",
     "parcel-bundler": "^1.12.5",
     "prettier": "^2.2.1"
   },
