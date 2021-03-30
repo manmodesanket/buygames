@@ -32591,7 +32591,37 @@ var Navbar = function Navbar() {
 };
 
 exports.Navbar = Navbar;
-},{"react":"../node_modules/react/index.js","./VerticalNavlist":"components/Navigation/VerticalNavlist.js","./HorizontalNav":"components/Navigation/HorizontalNav.js","./navbar.css":"components/Navigation/navbar.css"}],"components/trending/trending.css":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./VerticalNavlist":"components/Navigation/VerticalNavlist.js","./HorizontalNav":"components/Navigation/HorizontalNav.js","./navbar.css":"components/Navigation/navbar.css"}],"context/wishlistcontext/wishlistcontext.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.WishListProvider = exports.WishListContext = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+var WishListContext = (0, _react.createContext)();
+exports.WishListContext = WishListContext;
+var obj = {
+  name: "A"
+};
+
+var WishListProvider = function WishListProvider(_ref) {
+  var children = _ref.children;
+  return /*#__PURE__*/_react.default.createElement(WishListContext.Provider, {
+    value: {
+      obj: obj
+    }
+  }, children);
+};
+
+exports.WishListProvider = WishListProvider;
+},{"react":"../node_modules/react/index.js"}],"components/trending/trending.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -32605,6 +32635,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.Trending = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _wishlistcontext = require("../../context/wishlistcontext/wishlistcontext");
 
 require("./trending.css");
 
@@ -32630,6 +32662,8 @@ var Trending = function Trending() {
       trending = _useState2[0],
       setTrending = _useState2[1];
 
+  var obj = (0, _react.useContext)(_wishlistcontext.WishListContext);
+  console.log(obj);
   (0, _react.useEffect)(function () {
     var list = [{
       id: "1",
@@ -32679,7 +32713,7 @@ var Trending = function Trending() {
 };
 
 exports.Trending = Trending;
-},{"react":"../node_modules/react/index.js","./trending.css":"components/trending/trending.css"}],"components/Explore/Explore.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../context/wishlistcontext/wishlistcontext":"context/wishlistcontext/wishlistcontext.js","./trending.css":"components/trending/trending.css"}],"components/Explore/Explore.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32755,6 +32789,8 @@ var _Cart = require("./components/Cart/Cart");
 
 var _router = require("@reach/router");
 
+var _wishlistcontext = require("./context/wishlistcontext/wishlistcontext");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -32768,7 +32804,7 @@ var Home = function Home() {
 };
 
 var App = function App() {
-  return /*#__PURE__*/_react.default.createElement("div", null, /*#__PURE__*/_react.default.createElement(_Navbar.Navbar, null), /*#__PURE__*/_react.default.createElement(_router.Router, null, /*#__PURE__*/_react.default.createElement(Home, {
+  return /*#__PURE__*/_react.default.createElement(_wishlistcontext.WishListProvider, null, /*#__PURE__*/_react.default.createElement(_Navbar.Navbar, null), /*#__PURE__*/_react.default.createElement(_router.Router, null, /*#__PURE__*/_react.default.createElement(Home, {
     path: "/"
   }), /*#__PURE__*/_react.default.createElement(_Explore.Explore, {
     path: "/explore"
@@ -32780,7 +32816,7 @@ var App = function App() {
 };
 
 _reactDom.default.render( /*#__PURE__*/_react.default.createElement(App, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Navigation/Navbar":"components/Navigation/Navbar.js","./components/trending/trending":"components/trending/trending.js","./components/Explore/Explore":"components/Explore/Explore.js","./components/Wishlist/Wishlist":"components/Wishlist/Wishlist.js","./components/Cart/Cart":"components/Cart/Cart.js","@reach/router":"../node_modules/@reach/router/es/index.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Navigation/Navbar":"components/Navigation/Navbar.js","./components/trending/trending":"components/trending/trending.js","./components/Explore/Explore":"components/Explore/Explore.js","./components/Wishlist/Wishlist":"components/Wishlist/Wishlist.js","./components/Cart/Cart":"components/Cart/Cart.js","@reach/router":"../node_modules/@reach/router/es/index.js","./context/wishlistcontext/wishlistcontext":"context/wishlistcontext/wishlistcontext.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -32808,7 +32844,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62186" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56068" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

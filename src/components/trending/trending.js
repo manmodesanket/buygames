@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import { WishListContext } from "../../context/wishlistcontext/wishlistcontext";
 import "./trending.css";
 
 const Trending = () => {
   let [trending, setTrending] = useState([]);
-
+  let obj = useContext(WishListContext);
+  console.log(obj);
   useEffect(() => {
     let list = [
       {

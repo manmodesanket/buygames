@@ -6,6 +6,7 @@ import { Explore } from "./components/Explore/Explore";
 import { Wishlist } from "./components/Wishlist/Wishlist";
 import { Cart } from "./components/Cart/Cart";
 import { Router } from "@reach/router";
+import { WishListProvider } from "./context/wishlistcontext/wishlistcontext";
 
 const Home = () => {
   return (
@@ -18,7 +19,7 @@ const Home = () => {
 
 const App = () => {
   return (
-    <div>
+    <WishListProvider>
       <Navbar />
       <Router>
         <Home path="/" />
@@ -26,7 +27,7 @@ const App = () => {
         <Wishlist path="/wishlist" />
         <Cart path="/cart" />
       </Router>
-    </div>
+    </WishListProvider>
   );
 };
 
