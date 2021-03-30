@@ -29638,13 +29638,13 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/Navigation/Navlist.js":[function(require,module,exports) {
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/Navigation/NavItem.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.Navlist = void 0;
+exports.NavItem = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
@@ -29652,24 +29652,76 @@ require("./navbar.css");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Navlist = function Navlist() {
-  return /*#__PURE__*/_react.default.createElement("nav", {
-    className: "nav"
-  }, /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav__item"
-  }, "Home"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav__item"
-  }, "Categories"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav__item"
-  }, "Wishlist"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav__item"
-  }, "Cart"), /*#__PURE__*/_react.default.createElement("div", {
-    className: "nav__item"
-  }, "Orders"));
+var NavItem = function NavItem(_ref) {
+  var item = _ref.item,
+      className = _ref.className;
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: className
+  }, item);
 };
 
-exports.Navlist = Navlist;
-},{"react":"../node_modules/react/index.js","./navbar.css":"components/Navigation/navbar.css"}],"components/Navigation/Navbar.js":[function(require,module,exports) {
+exports.NavItem = NavItem;
+},{"react":"../node_modules/react/index.js","./navbar.css":"components/Navigation/navbar.css"}],"components/Navigation/VerticalNavlist.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.VerticalNavlist = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _NavItem = require("./NavItem");
+
+require("./navbar.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var VerticalNavlist = function VerticalNavlist() {
+  var navList = ["Home", "Explore", "Wishlist", "Cart", "Orders"];
+  return /*#__PURE__*/_react.default.createElement("nav", {
+    className: "nav"
+  }, navList.map(function (item, i) {
+    return /*#__PURE__*/_react.default.createElement(_NavItem.NavItem, {
+      key: i,
+      item: item,
+      className: "nav__item"
+    });
+  }));
+};
+
+exports.VerticalNavlist = VerticalNavlist;
+},{"react":"../node_modules/react/index.js","./NavItem":"components/Navigation/NavItem.js","./navbar.css":"components/Navigation/navbar.css"}],"components/Navigation/HorizontalNav.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.HorizontalNav = void 0;
+
+var _react = _interopRequireDefault(require("react"));
+
+var _NavItem = require("./NavItem");
+
+require("./navbar.css");
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var HorizontalNav = function HorizontalNav() {
+  var navList = ["Home", "Explore", "Wishlist", "Cart", "Orders"];
+  return /*#__PURE__*/_react.default.createElement("div", {
+    className: "horizontal-nav"
+  }, navList.map(function (item, i) {
+    return /*#__PURE__*/_react.default.createElement(_NavItem.NavItem, {
+      key: i,
+      item: item,
+      className: "horizontal-nav__item"
+    });
+  }));
+};
+
+exports.HorizontalNav = HorizontalNav;
+},{"react":"../node_modules/react/index.js","./NavItem":"components/Navigation/NavItem.js","./navbar.css":"components/Navigation/navbar.css"}],"components/Navigation/Navbar.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -29679,7 +29731,9 @@ exports.Navbar = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
 
-var _Navlist = require("./Navlist");
+var _VerticalNavlist = require("./VerticalNavlist");
+
+var _HorizontalNav = require("./HorizontalNav");
 
 require("./navbar.css");
 
@@ -29716,11 +29770,11 @@ var Navbar = function Navbar() {
     className: "toggler"
   }, /*#__PURE__*/_react.default.createElement("i", {
     className: "material-icons"
-  }, "menu"))), showNav === "yes" ? /*#__PURE__*/_react.default.createElement(_Navlist.Navlist, null) : null);
+  }, "menu")), /*#__PURE__*/_react.default.createElement(_HorizontalNav.HorizontalNav, null)), showNav === "yes" ? /*#__PURE__*/_react.default.createElement(_VerticalNavlist.VerticalNavlist, null) : null);
 };
 
 exports.Navbar = Navbar;
-},{"react":"../node_modules/react/index.js","./Navlist":"components/Navigation/Navlist.js","./navbar.css":"components/Navigation/navbar.css"}],"components/trending/trending.css":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","./VerticalNavlist":"components/Navigation/VerticalNavlist.js","./HorizontalNav":"components/Navigation/HorizontalNav.js","./navbar.css":"components/Navigation/navbar.css"}],"components/trending/trending.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
@@ -29763,19 +29817,23 @@ var Trending = function Trending() {
     var list = [{
       id: "1",
       name: "Minecraft",
-      img: "https://i.pinimg.com/736x/e7/41/fc/e741fccceb24d55e0d1aa3ef5b75ee03.jpg"
+      img: "https://i.pinimg.com/736x/e7/41/fc/e741fccceb24d55e0d1aa3ef5b75ee03.jpg",
+      price: 150
     }, {
       id: "2",
       name: "GTA V",
-      img: "https://m.media-amazon.com/images/M/MV5BZTI4YWM0YjItNTk4Mi00N2NkLTlkZjItOGIzNTdmZTQyOTk1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg"
+      img: "https://m.media-amazon.com/images/M/MV5BZTI4YWM0YjItNTk4Mi00N2NkLTlkZjItOGIzNTdmZTQyOTk1XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+      price: 150
     }, {
       id: "3",
       name: "Fortnite",
-      img: "https://cultureposters.com/wp-content/uploads/2019/08/fortnite.jpg"
+      img: "https://cultureposters.com/wp-content/uploads/2019/08/fortnite.jpg",
+      price: 150
     }, {
       id: "4",
       name: "Apex Legends",
-      img: "https://i.pinimg.com/originals/1a/9c/d1/1a9cd17aeeb8d448bdf4d65b96e1650a.jpg"
+      img: "https://i.pinimg.com/originals/1a/9c/d1/1a9cd17aeeb8d448bdf4d65b96e1650a.jpg",
+      price: 150
     }];
     setTrending(list);
   }, []);
@@ -29791,13 +29849,15 @@ var Trending = function Trending() {
       className: "card__image"
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "card__body"
-    }, /*#__PURE__*/_react.default.createElement("div", {
+    }, /*#__PURE__*/_react.default.createElement("button", {
+      className: "card__body__button"
+    }, "Add to WishList"), /*#__PURE__*/_react.default.createElement("div", {
       className: "card__header"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "card__name"
     }, item.name)), /*#__PURE__*/_react.default.createElement("div", {
       className: "card__price"
-    })));
+    }, "Rs. ", item.price)));
   })));
 };
 

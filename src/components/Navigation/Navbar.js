@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Navlist } from "./Navlist";
+import { VerticalNavlist } from "./VerticalNavlist";
+import { HorizontalNav } from "./HorizontalNav";
 import "./navbar.css";
 
 const Navbar = () => {
@@ -16,8 +17,9 @@ const Navbar = () => {
         <button onClick={handleNav} className="toggler">
           <i className="material-icons">menu</i>
         </button>
+        <HorizontalNav />
       </div>
-      {showNav === "yes" ? <Navlist /> : null}
+      {showNav === "yes" ? <VerticalNavlist /> : null}
     </div>
   );
 };
