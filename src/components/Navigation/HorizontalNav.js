@@ -3,7 +3,13 @@ import { NavItem } from "./NavItem";
 import "./navbar.css";
 
 const HorizontalNav = () => {
-  let navList = ["Home", "Explore", "Wishlist", "Cart", "Orders"];
+  let navList = [
+    { name: "Home", path: "/" },
+    { name: "Explore", path: "/explore" },
+    { name: "Wishlist", path: "/wishlist" },
+    { name: "Cart", path: "/cart" },
+    { name: "Orders", path: "/orders" },
+  ];
   return (
     <div className="horizontal-nav">
       {navList.map((item, i) => (

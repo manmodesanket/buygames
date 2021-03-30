@@ -92,6 +92,11 @@ h1 {
   font-size: var(--fz-md);
 }
 
+.link {
+  color: var(--white);
+  text-decoration: none;
+}
+
 .btn {
   background-color: var(--green);
   padding: 10px 20px;
