@@ -1,15 +1,14 @@
-import React, { useContext } from "react";
-import { WishListContext } from "../../context/wishlistcontext/wishlistcontext";
+import React from "react";
+import { useWishlist } from "../../context/wishlistcontext/wishlistcontext";
 import "./wishlist.css";
 
 const Wishlist = () => {
-  let { itemsInWishList } = useContext(WishListContext);
-  console.log(itemsInWishList);
+  let { wishList } = useWishlist();
   return (
     <div className="main-content">
       <div className="wishlist">
-        {itemsInWishList &&
-          itemsInWishList.map((item) => (
+        {wishList &&
+          wishList.map((item) => (
             <div key={item.id} className="card">
               <img src={item.img} alt="img" className="card__image" />
               <div className="card__body">

@@ -32438,12 +32438,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var NavItem = function NavItem(_ref) {
   var item = _ref.item,
       className = _ref.className;
-  return /*#__PURE__*/_react.default.createElement("div", {
-    className: className
-  }, /*#__PURE__*/_react.default.createElement(_router.Link, {
+  return /*#__PURE__*/_react.default.createElement(_router.Link, {
     to: item.path,
-    className: "link"
-  }, item.name));
+    className: "link ".concat(className)
+  }, item.name);
 };
 
 exports.NavItem = NavItem;
@@ -32657,14 +32655,6 @@ function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return 
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -32684,19 +32674,23 @@ var Trending = function Trending() {
       setTrending = _useState2[1];
 
   var _useWishlist = (0, _wishlistcontext.useWishlist)(),
-      itemsInWishList = _useWishlist.itemsInWishList,
-      setItemsInWishList = _useWishlist.setItemsInWishList;
+      wishListDispatch = _useWishlist.wishListDispatch;
 
   var _useCart = (0, _CartContext.useCart)(),
-      itemsInCart = _useCart.itemsInCart,
-      setItemsInCart = _useCart.setItemsInCart;
+      cartDispatch = _useCart.cartDispatch;
 
   var handleWishList = function handleWishList(item) {
-    setItemsInWishList([].concat(_toConsumableArray(itemsInWishList), [item]));
+    wishListDispatch({
+      type: "ADD_TO_WISHLIST",
+      payload: item
+    });
   };
 
   var handleCartList = function handleCartList(item) {
-    setItemsInCart([].concat(_toConsumableArray(itemsInCart), [item]));
+    cartDispatch({
+      type: "ADD_TO_CART",
+      payload: item
+    });
   };
 
   (0, _react.useEffect)(function () {
@@ -32788,26 +32782,23 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Wishlist = void 0;
 
-var _react = _interopRequireWildcard(require("react"));
+var _react = _interopRequireDefault(require("react"));
 
 var _wishlistcontext = require("../../context/wishlistcontext/wishlistcontext");
 
 require("./wishlist.css");
 
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Wishlist = function Wishlist() {
-  var _useContext = (0, _react.useContext)(_wishlistcontext.WishListContext),
-      itemsInWishList = _useContext.itemsInWishList;
+  var _useWishlist = (0, _wishlistcontext.useWishlist)(),
+      wishList = _useWishlist.wishList;
 
-  console.log(itemsInWishList);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "main-content"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "wishlist"
-  }, itemsInWishList && itemsInWishList.map(function (item) {
+  }, wishList && wishList.map(function (item) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: item.id,
       className: "card"
@@ -32844,13 +32835,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Cart = function Cart() {
   var _useCart = (0, _CartContext.useCart)(),
-      itemsInCart = _useCart.itemsInCart;
+      cartList = _useCart.cartList;
 
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "main-content"
   }, /*#__PURE__*/_react.default.createElement("div", {
     className: "wishlist"
-  }, itemsInCart && itemsInCart.map(function (item) {
+  }, cartList && cartList.map(function (item) {
     return /*#__PURE__*/_react.default.createElement("div", {
       key: item.id,
       className: "card"
@@ -32871,7 +32862,38 @@ var Cart = function Cart() {
 };
 
 exports.Cart = Cart;
-},{"react":"../node_modules/react/index.js","../../context/cartcontext/CartContext":"context/cartcontext/CartContext.js"}],"context/wishlistcontext/WishListProvider.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../context/cartcontext/CartContext":"context/cartcontext/CartContext.js"}],"reducers/WishlistReducer/Reducer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.reducerFunction = void 0;
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var reducerFunction = function reducerFunction(state, action) {
+  switch (action.type) {
+    case "ADD_TO_WISHLIST":
+      return [].concat(_toConsumableArray(state), [action.payload]);
+
+    default:
+      return state;
+  }
+};
+
+exports.reducerFunction = reducerFunction;
+},{}],"context/wishlistcontext/WishListProvider.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32880,6 +32902,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.WishListProvider = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _Reducer = require("../../reducers/WishlistReducer/Reducer");
 
 var _wishlistcontext = require("./wishlistcontext");
 
@@ -32902,21 +32926,52 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var WishListProvider = function WishListProvider(_ref) {
   var children = _ref.children;
 
-  var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      itemsInWishList = _useState2[0],
-      setItemsInWishList = _useState2[1];
+  var _useReducer = (0, _react.useReducer)(_Reducer.reducerFunction, []),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      wishList = _useReducer2[0],
+      dispatch = _useReducer2[1];
 
   return /*#__PURE__*/_react.default.createElement(_wishlistcontext.WishListContext.Provider, {
     value: {
-      itemsInWishList: itemsInWishList,
-      setItemsInWishList: setItemsInWishList
+      wishList: wishList,
+      wishListDispatch: dispatch
     }
   }, children);
 };
 
 exports.WishListProvider = WishListProvider;
-},{"react":"../node_modules/react/index.js","./wishlistcontext":"context/wishlistcontext/wishlistcontext.js"}],"context/cartcontext/CartProvider.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../reducers/WishlistReducer/Reducer":"reducers/WishlistReducer/Reducer.js","./wishlistcontext":"context/wishlistcontext/wishlistcontext.js"}],"reducers/CartReducer/CartReducer.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.reducerFunction = void 0;
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+var reducerFunction = function reducerFunction(state, action) {
+  switch (action.type) {
+    case "ADD_TO_CART":
+      return [].concat(_toConsumableArray(state), [action.payload]);
+
+    default:
+      return state;
+  }
+};
+
+exports.reducerFunction = reducerFunction;
+},{}],"context/cartcontext/CartProvider.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32925,6 +32980,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.CartProvider = CartProvider;
 
 var _react = _interopRequireWildcard(require("react"));
+
+var _CartReducer = require("../../reducers/CartReducer/CartReducer");
 
 var _CartContext = require("./CartContext");
 
@@ -32947,19 +33004,19 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function CartProvider(_ref) {
   var children = _ref.children;
 
-  var _useState = (0, _react.useState)([]),
-      _useState2 = _slicedToArray(_useState, 2),
-      itemsInCart = _useState2[0],
-      setItemsInCart = _useState2[1];
+  var _useReducer = (0, _react.useReducer)(_CartReducer.reducerFunction, []),
+      _useReducer2 = _slicedToArray(_useReducer, 2),
+      cartList = _useReducer2[0],
+      dispatch = _useReducer2[1];
 
   return /*#__PURE__*/_react.default.createElement(_CartContext.CartContext.Provider, {
     value: {
-      itemsInCart: itemsInCart,
-      setItemsInCart: setItemsInCart
+      cartList: cartList,
+      cartDispatch: dispatch
     }
   }, children);
 }
-},{"react":"../node_modules/react/index.js","./CartContext":"context/cartcontext/CartContext.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../reducers/CartReducer/CartReducer":"reducers/CartReducer/CartReducer.js","./CartContext":"context/cartcontext/CartContext.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireWildcard(require("react"));

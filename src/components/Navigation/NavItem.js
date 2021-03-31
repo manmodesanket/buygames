@@ -4,11 +4,9 @@ import { Link } from "@reach/router";
 
 const NavItem = ({ item, className }) => {
   return (
-    <div className={className}>
-      <Link to={item.path} className="link">
-        {item.name}
-      </Link>
-    </div>
+    <Link to={item.path} className={`link ${className}`}>
+      {item.name}
+    </Link>
   );
 };
 

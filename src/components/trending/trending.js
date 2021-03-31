@@ -5,15 +5,21 @@ import "./trending.css";
 
 const Trending = () => {
   let [trending, setTrending] = useState([]);
-  let { itemsInWishList, setItemsInWishList } = useWishlist();
-  let { itemsInCart, setItemsInCart } = useCart();
+  let { wishListDispatch } = useWishlist();
+  let { cartDispatch } = useCart();
 
   const handleWishList = (item) => {
-    setItemsInWishList([...itemsInWishList, item]);
+    wishListDispatch({
+      type: "ADD_TO_WISHLIST",
+      payload: item,
+    });
   };
 
   const handleCartList = (item) => {
-    setItemsInCart([...itemsInCart, item]);
+    cartDispatch({
+      type: "ADD_TO_CART",
+      payload: item,
+    });
   };
 
   useEffect(() => {

@@ -2,12 +2,12 @@ import React from "react";
 import { useCart } from "../../context/cartcontext/CartContext";
 
 const Cart = () => {
-  let { itemsInCart } = useCart();
+  let { cartList } = useCart();
   return (
     <div className="main-content">
       <div className="wishlist">
-        {itemsInCart &&
-          itemsInCart.map((item) => (
+        {cartList &&
+          cartList.map((item) => (
             <div key={item.id} className="card">
               <img src={item.img} alt="img" className="card__image" />
               <div className="card__body">

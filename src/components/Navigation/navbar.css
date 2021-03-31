@@ -78,6 +78,7 @@
   .horizontal-nav__item {
     display: flex;
     align-items: center;
+    outline: none;
     height: 100%;
   }
 
