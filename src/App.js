@@ -6,7 +6,7 @@ import { Explore } from "./components/Explore/Explore";
 import { Wishlist } from "./components/Wishlist/Wishlist";
 import { Cart } from "./components/Cart/Cart";
 import { Router } from "@reach/router";
-import { WishListProvider } from "./context/wishlistcontext/wishlistcontext";
+import { WishListProvider } from "./context/wishlistcontext/WishListProvider";
 import { CartProvider } from "./context/cartcontext/CartContext";
 
 const Home = () => {
