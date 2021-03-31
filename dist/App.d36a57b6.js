@@ -32438,7 +32438,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var NavItem = function NavItem(_ref) {
   var item = _ref.item,
       className = _ref.className;
-  console.log(item);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: className
   }, /*#__PURE__*/_react.default.createElement(_router.Link, {
@@ -32597,6 +32596,7 @@ exports.Navbar = Navbar;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.useWishlist = useWishlist;
 exports.WishListProvider = exports.WishListContext = void 0;
 
 var _react = _interopRequireWildcard(require("react"));
@@ -32604,6 +32604,18 @@ var _react = _interopRequireWildcard(require("react"));
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 var WishListContext = (0, _react.createContext)();
 exports.WishListContext = WishListContext;
@@ -32613,14 +32625,75 @@ var obj = {
 
 var WishListProvider = function WishListProvider(_ref) {
   var children = _ref.children;
+
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      itemsInWishList = _useState2[0],
+      setItemsInWishList = _useState2[1];
+
   return /*#__PURE__*/_react.default.createElement(WishListContext.Provider, {
     value: {
-      obj: obj
+      itemsInWishList: itemsInWishList,
+      setItemsInWishList: setItemsInWishList
     }
   }, children);
 };
 
 exports.WishListProvider = WishListProvider;
+
+function useWishlist() {
+  return (0, _react.useContext)(WishListContext);
+}
+},{"react":"../node_modules/react/index.js"}],"context/cartcontext/CartContext.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CartProvider = CartProvider;
+exports.useCart = useCart;
+exports.CartContext = void 0;
+
+var _react = _interopRequireWildcard(require("react"));
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+var CartContext = (0, _react.createContext)();
+exports.CartContext = CartContext;
+
+function CartProvider(_ref) {
+  var children = _ref.children;
+
+  var _useState = (0, _react.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      itemsInCart = _useState2[0],
+      setItemsInCart = _useState2[1];
+
+  return /*#__PURE__*/_react.default.createElement(CartContext.Provider, {
+    value: {
+      itemsInCart: itemsInCart,
+      setItemsInCart: setItemsInCart
+    }
+  }, children);
+}
+
+function useCart() {
+  return (0, _react.useContext)(CartContext);
+}
 },{"react":"../node_modules/react/index.js"}],"components/trending/trending.css":[function(require,module,exports) {
 var reloadCSS = require('_css_loader');
 
@@ -32638,11 +32711,21 @@ var _react = _interopRequireWildcard(require("react"));
 
 var _wishlistcontext = require("../../context/wishlistcontext/wishlistcontext");
 
+var _CartContext = require("../../context/cartcontext/CartContext");
+
 require("./trending.css");
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -32662,8 +32745,22 @@ var Trending = function Trending() {
       trending = _useState2[0],
       setTrending = _useState2[1];
 
-  var obj = (0, _react.useContext)(_wishlistcontext.WishListContext);
-  console.log(obj);
+  var _useWishlist = (0, _wishlistcontext.useWishlist)(),
+      itemsInWishList = _useWishlist.itemsInWishList,
+      setItemsInWishList = _useWishlist.setItemsInWishList;
+
+  var _useCart = (0, _CartContext.useCart)(),
+      itemsInCart = _useCart.itemsInCart,
+      setItemsInCart = _useCart.setItemsInCart;
+
+  var handleWishList = function handleWishList(item) {
+    setItemsInWishList([].concat(_toConsumableArray(itemsInWishList), [item]));
+  };
+
+  var handleCartList = function handleCartList(item) {
+    setItemsInCart([].concat(_toConsumableArray(itemsInCart), [item]));
+  };
+
   (0, _react.useEffect)(function () {
     var list = [{
       id: "1",
@@ -32701,8 +32798,16 @@ var Trending = function Trending() {
     }), /*#__PURE__*/_react.default.createElement("div", {
       className: "card__body"
     }, /*#__PURE__*/_react.default.createElement("button", {
-      className: "card__body__button"
-    }, "Add to WishList"), /*#__PURE__*/_react.default.createElement("div", {
+      className: "card__body__button",
+      onClick: function onClick() {
+        return handleWishList(item);
+      }
+    }, "Add to WishList"), /*#__PURE__*/_react.default.createElement("button", {
+      className: "card__body__button",
+      onClick: function onClick() {
+        return handleCartList(item);
+      }
+    }, "Add to Cart"), /*#__PURE__*/_react.default.createElement("div", {
       className: "card__header"
     }, /*#__PURE__*/_react.default.createElement("div", {
       className: "card__name"
@@ -32713,7 +32818,7 @@ var Trending = function Trending() {
 };
 
 exports.Trending = Trending;
-},{"react":"../node_modules/react/index.js","../../context/wishlistcontext/wishlistcontext":"context/wishlistcontext/wishlistcontext.js","./trending.css":"components/trending/trending.css"}],"components/Explore/Explore.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../context/wishlistcontext/wishlistcontext":"context/wishlistcontext/wishlistcontext.js","../../context/cartcontext/CartContext":"context/cartcontext/CartContext.js","./trending.css":"components/trending/trending.css"}],"components/Explore/Explore.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32732,7 +32837,12 @@ var Explore = function Explore() {
 };
 
 exports.Explore = Explore;
-},{"react":"../node_modules/react/index.js"}],"components/Wishlist/Wishlist.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js"}],"components/Wishlist/wishlist.css":[function(require,module,exports) {
+var reloadCSS = require('_css_loader');
+
+module.hot.dispose(reloadCSS);
+module.hot.accept(reloadCSS);
+},{"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"components/Wishlist/Wishlist.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32740,18 +32850,47 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Wishlist = void 0;
 
-var _react = _interopRequireDefault(require("react"));
+var _react = _interopRequireWildcard(require("react"));
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+var _wishlistcontext = require("../../context/wishlistcontext/wishlistcontext");
+
+require("./wishlist.css");
+
+function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
 var Wishlist = function Wishlist() {
+  var _useContext = (0, _react.useContext)(_wishlistcontext.WishListContext),
+      itemsInWishList = _useContext.itemsInWishList;
+
+  console.log(itemsInWishList);
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "main-content"
-  }, "Wishlist");
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "wishlist"
+  }, itemsInWishList && itemsInWishList.map(function (item) {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: item.id,
+      className: "card"
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      src: item.img,
+      alt: "img",
+      className: "card__image"
+    }), /*#__PURE__*/_react.default.createElement("div", {
+      className: "card__body"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "card__header"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "card__name"
+    }, item.name)), /*#__PURE__*/_react.default.createElement("div", {
+      className: "card__price"
+    }, "Rs. ", item.price)));
+  })));
 };
 
 exports.Wishlist = Wishlist;
-},{"react":"../node_modules/react/index.js"}],"components/Cart/Cart.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../context/wishlistcontext/wishlistcontext":"context/wishlistcontext/wishlistcontext.js","./wishlist.css":"components/Wishlist/wishlist.css"}],"components/Cart/Cart.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -32761,16 +32900,40 @@ exports.Cart = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
+var _CartContext = require("../../context/cartcontext/CartContext");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Cart = function Cart() {
+  var _useCart = (0, _CartContext.useCart)(),
+      itemsInCart = _useCart.itemsInCart;
+
   return /*#__PURE__*/_react.default.createElement("div", {
     className: "main-content"
-  }, "Cart");
+  }, /*#__PURE__*/_react.default.createElement("div", {
+    className: "wishlist"
+  }, itemsInCart && itemsInCart.map(function (item) {
+    return /*#__PURE__*/_react.default.createElement("div", {
+      key: item.id,
+      className: "card"
+    }, /*#__PURE__*/_react.default.createElement("img", {
+      src: item.img,
+      alt: "img",
+      className: "card__image"
+    }), /*#__PURE__*/_react.default.createElement("div", {
+      className: "card__body"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "card__header"
+    }, /*#__PURE__*/_react.default.createElement("div", {
+      className: "card__name"
+    }, item.name)), /*#__PURE__*/_react.default.createElement("div", {
+      className: "card__price"
+    }, "Rs. ", item.price)));
+  })));
 };
 
 exports.Cart = Cart;
-},{"react":"../node_modules/react/index.js"}],"App.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","../../context/cartcontext/CartContext":"context/cartcontext/CartContext.js"}],"App.js":[function(require,module,exports) {
 "use strict";
 
 var _react = _interopRequireWildcard(require("react"));
@@ -32791,6 +32954,8 @@ var _router = require("@reach/router");
 
 var _wishlistcontext = require("./context/wishlistcontext/wishlistcontext");
 
+var _CartContext = require("./context/cartcontext/CartContext");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
@@ -32804,7 +32969,7 @@ var Home = function Home() {
 };
 
 var App = function App() {
-  return /*#__PURE__*/_react.default.createElement(_wishlistcontext.WishListProvider, null, /*#__PURE__*/_react.default.createElement(_Navbar.Navbar, null), /*#__PURE__*/_react.default.createElement(_router.Router, null, /*#__PURE__*/_react.default.createElement(Home, {
+  return /*#__PURE__*/_react.default.createElement(_CartContext.CartProvider, null, /*#__PURE__*/_react.default.createElement(_wishlistcontext.WishListProvider, null, /*#__PURE__*/_react.default.createElement(_Navbar.Navbar, null), /*#__PURE__*/_react.default.createElement(_router.Router, null, /*#__PURE__*/_react.default.createElement(Home, {
     path: "/"
   }), /*#__PURE__*/_react.default.createElement(_Explore.Explore, {
     path: "/explore"
@@ -32812,11 +32977,11 @@ var App = function App() {
     path: "/wishlist"
   }), /*#__PURE__*/_react.default.createElement(_Cart.Cart, {
     path: "/cart"
-  })));
+  }))));
 };
 
 _reactDom.default.render( /*#__PURE__*/_react.default.createElement(App, null), document.getElementById("root"));
-},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Navigation/Navbar":"components/Navigation/Navbar.js","./components/trending/trending":"components/trending/trending.js","./components/Explore/Explore":"components/Explore/Explore.js","./components/Wishlist/Wishlist":"components/Wishlist/Wishlist.js","./components/Cart/Cart":"components/Cart/Cart.js","@reach/router":"../node_modules/@reach/router/es/index.js","./context/wishlistcontext/wishlistcontext":"context/wishlistcontext/wishlistcontext.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"react":"../node_modules/react/index.js","react-dom":"../node_modules/react-dom/index.js","./components/Navigation/Navbar":"components/Navigation/Navbar.js","./components/trending/trending":"components/trending/trending.js","./components/Explore/Explore":"components/Explore/Explore.js","./components/Wishlist/Wishlist":"components/Wishlist/Wishlist.js","./components/Cart/Cart":"components/Cart/Cart.js","@reach/router":"../node_modules/@reach/router/es/index.js","./context/wishlistcontext/wishlistcontext":"context/wishlistcontext/wishlistcontext.js","./context/cartcontext/CartContext":"context/cartcontext/CartContext.js"}],"../node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -32844,7 +33009,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56068" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60981" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

@@ -7,6 +7,7 @@ import { Wishlist } from "./components/Wishlist/Wishlist";
 import { Cart } from "./components/Cart/Cart";
 import { Router } from "@reach/router";
 import { WishListProvider } from "./context/wishlistcontext/wishlistcontext";
+import { CartProvider } from "./context/cartcontext/CartContext";
 
 const Home = () => {
   return (
@@ -19,15 +20,17 @@ const Home = () => {
 
 const App = () => {
   return (
-    <WishListProvider>
-      <Navbar />
-      <Router>
-        <Home path="/" />
-        <Explore path="/explore" />
-        <Wishlist path="/wishlist" />
-        <Cart path="/cart" />
-      </Router>
-    </WishListProvider>
+    <CartProvider>
+      <WishListProvider>
+        <Navbar />
+        <Router>
+          <Home path="/" />
+          <Explore path="/explore" />
+          <Wishlist path="/wishlist" />
+          <Cart path="/cart" />
+        </Router>
+      </WishListProvider>
+    </CartProvider>
   );
 };
 

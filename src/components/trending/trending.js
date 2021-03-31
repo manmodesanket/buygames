@@ -1,11 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
-import { WishListContext } from "../../context/wishlistcontext/wishlistcontext";
+import { useWishlist } from "../../context/wishlistcontext/wishlistcontext";
+import { useCart } from "../../context/cartcontext/CartContext";
 import "./trending.css";
 
 const Trending = () => {
   let [trending, setTrending] = useState([]);
-  let obj = useContext(WishListContext);
-  console.log(obj);
+  let { itemsInWishList, setItemsInWishList } = useWishlist();
+  let { itemsInCart, setItemsInCart } = useCart();
+
+  const handleWishList = (item) => {
+    setItemsInWishList([...itemsInWishList, item]);
+  };
+
+  const handleCartList = (item) => {
+    setItemsInCart([...itemsInCart, item]);
+  };
+
   useEffect(() => {
     let list = [
       {
@@ -48,7 +58,18 @@ const Trending = () => {
           <div key={item.id} className="card">
             <img src={item.img} alt="img" className="card__image" />
             <div className="card__body">
-              <button className="card__body__button">Add to WishList</button>
+              <button
+                className="card__body__button"
+                onClick={() => handleWishList(item)}
+              >
+                Add to WishList
+              </button>
+              <button
+                className="card__body__button"
+                onClick={() => handleCartList(item)}
+              >
+                Add to Cart
+              </button>
               <div className="card__header">
                 <div className="card__name">{item.name}</div>
               </div>

@@ -103,5 +103,22 @@
   }
 }
 
+.wishlist {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  list-style-type: none;
+}
+
+@media (min-width: 650px) {
+  .wishlist {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    list-style-type: none;
+  }
+}
+
 
 /*# sourceMappingURL=/App.d36a57b6.css.map */
